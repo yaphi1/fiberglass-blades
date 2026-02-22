@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>Portfolio | Fiberglass Blades</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <header>
+      <div>
+        <a class="logo_link" href="#">Fiberglass Blades</a>
+      </div>
+      <nav>
+        <a href="#">About</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+      </nav>
+    </header>
+
+    <div class="page_content">
+
+      <h1 class="page_title">Portfolio</h1>
+
+      <div class="page_description">
+        Each piece is made to the highest standard of quality. The materials include foam, resin, and more.
+      </div>
+
+      <div class="gallery"></div>
+    </div>
+
+    <template class="template_gallery_item">
+      <div class="gallery_item">
+        <div class="gallery_item_media_frame">
+          <div class="gallery_item_media_container"></div>
+        </div>
+        <div class="gallery_item_caption"></div>
+      </div>
+    </template>
+
+    <div class="showcase">
+      <div class="showcase_content">
+        <div class="showcase_close_button">
+          <svg class="basic_x" width="20" height="20" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+            <style type="text/css">/*<![CDATA[*/ .basic_x line{ stroke: var(--text-color-primary); stroke-width:1; stroke-linecap:round; } /*]]>*/</style>
+            <line x1="0.5" y1="0.5" x2="9.5" y2="9.5"></line>
+            <line x1="0.5" y1="9.5" x2="9.5" y2="0.5"></line>
+          </svg>
+        </div>
+        <div class="showcase_summary">
+          <div class="showcase_content_container">
+            <h2 class="showcase_title">Project Name</h2>
+            <p>Game name:</p>
+            <p>Year made:</p>
+            <p>Materials:</p>
+          </div>
+        </div>
+        <div class="showcase_media_door_container">
+          <div class="showcase_media_container">
+            <div class="showcase_media"></div>
+            <div class="showcase_thumbnails"></div>
+          </div>
+        </div>
+        <div class="showcase_description">
+          <div class="showcase_content_container">
+            Description
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./portfolio.js"></script>
+  </body>
+</html>

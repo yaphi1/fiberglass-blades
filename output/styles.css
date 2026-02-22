@@ -1,0 +1,235 @@
+* {
+	box-sizing: border-box;
+}
+body {
+/* 	--background-color: #FEFBF1;
+	--line-color: #cEcBc1;
+	--text-color-primary: #442;
+	--text-color-secondary: #8f8484; */
+	
+	--background-color: #006797;
+	--line-color: #bfdbdf;
+	--text-color-primary: #fff;
+	--text-color-secondary: #bfdbdf;
+	
+	--card-background-color: #D0CCBC;
+	--card-text-color: #442;
+
+	margin: 0px;
+	background-color: var(--background-color);
+	font-family: "Merriweather", serif;
+  font-weight: 400;
+	color: var(--text-color-primary);
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: var(--background-color);
+	border-bottom: 1px solid var(--line-color);
+	z-index: 10;
+}
+.logo_link {
+	color: var(--text-color-primary);
+	text-decoration: none;
+}
+header nav {
+	display: flex;
+	gap: 8px;
+}
+header nav a {
+	color: var(--text-color-primary);
+}
+.no_scroll {
+	overflow: hidden;
+}
+img {
+	display: block;
+	width: 100%;
+}
+.page_title {
+	margin: 0;
+	padding: clamp(100px, 10vw, 200px) 80px 0px;
+	font-size: clamp(40px, 8vw, 140px);
+	color: var(--text-color-secondary);
+}
+.page_description {
+	font-size: 24px;
+	padding: 10px 80px 0px;
+	max-width: 800px;
+	line-height: 1.5;
+}
+.page_content {
+	transition: opacity 0.5s;
+	opacity: 1;
+}
+.page_content.faded {
+	opacity: 0.2;
+}
+.gallery {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 40px;
+	padding: 80px;
+	padding-top: 40px;
+	transition: opacity 0.5s;
+	opacity: 1;
+}
+.gallery_item {
+	cursor: pointer;
+	transition: transform 0.2s;
+	padding: 18px 18px 10px;
+/* 	border: 1px solid var(--line-color); */
+/* 	border: 1px solid #0098db; */
+	background: #fff2;
+}
+.gallery_item:hover,
+.gallery_item.active {
+	transform: scale(1.05);
+}
+.gallery_item_media_frame {
+	padding: 0px;
+/* 	border: 1px solid var(--line-color); */
+	border: 2px solid #0098db;
+	overflow: hidden;
+}
+.gallery_item_media_container {
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+}
+.gallery_item_media_container img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.gallery_item_caption {
+	padding-top: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	font-size: 16px;
+	color: var(--text-color-secondary);
+}
+.showcase {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	pointer-events: none;
+}
+.showcase.active {
+	overflow: scroll;
+	pointer-events: auto;
+}
+.showcase_close_button {
+	position: absolute;
+	top: 4px;
+	left: -40px;
+	cursor: pointer;
+	transition: opacity 0.5s;
+	transition-delay: 0s;
+	opacity: 0;
+}
+.showcase.active .showcase_close_button {
+	transition-delay: 0.3s;
+	opacity: 1;
+}
+.showcase_content {
+	position: relative;
+	margin: 80px;
+	margin-top: 100px;
+	display: grid;
+	gap: 40px;
+	grid-template-columns: repeat(3, 1fr);
+}
+.showcase_content_container {
+	border: 1px solid var(--card-text-color);
+	padding: 10px;
+	height: 100%;
+}
+.showcase_summary {
+	padding: 20px;
+	background: var(--card-background-color);
+	color: var(--card-text-color);
+	transition: transform 0.5s;
+	transform: translateX(-50vw);
+}
+.showcase.active .showcase_summary {
+	transform: translateX(0vw);
+}
+.showcase_media_door_container {
+	grid-column: span 2;
+	perspective: 800px;
+}
+.showcase_media_container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	transform-origin: right center;
+  transform: rotateY(-90deg);
+	opacity: 0;
+  transition: all 0.5s;
+}
+.showcase.active .showcase_media_container {
+	opacity: 1;
+	transform: rotateY(0deg);
+}
+.showcase_media {
+	background: black;
+	aspect-ratio: 16 / 9;
+  position: relative;
+}
+.showcase_media img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.showcase_media img:first-of-type {
+	position: relative;
+}
+.showcase_media img.active {
+	opacity: 1;
+}
+.showcase_thumbnails {
+	display: flex;
+	padding-top: 10px;
+	gap: 10px;
+}
+.showcase_thumbnail_container {
+  flex: 1;
+	max-width: 20%;
+}
+.showcase_thumbnail_container.active {
+	outline: 2px solid var(--card-background-color);
+  outline-offset: -2px;
+}
+.showcase_thumbnail_container img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.showcase_description {
+	padding: 20px;
+	background: var(--card-background-color);
+	color: var(--card-text-color);
+	grid-column: span 3;
+	min-height: 600px;
+	transition: transform 0.5s;
+	transform: translateY(100vh);
+}
+.showcase.active .showcase_description {
+	transform: translateY(0vh);
+}
+.showcase_title {
+	margin: 0;
+}
