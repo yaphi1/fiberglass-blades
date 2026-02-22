@@ -20,6 +20,9 @@ body {
 	font-family: "Merriweather", serif;
   font-weight: 400;
 	color: var(--text-color-primary);
+
+  --z-index-header: 10;
+  --z-index-overlay: 20;
 }
 header {
 	display: flex;
@@ -31,7 +34,7 @@ header {
 	width: 100%;
 	background-color: var(--background-color);
 	border-bottom: 1px solid var(--line-color);
-	z-index: 10;
+	z-index: var(--z-index-header);
 }
 .logo_link {
 	color: var(--text-color-primary);
@@ -232,4 +235,50 @@ img {
 }
 .showcase_title {
 	margin: 0;
+}
+.showcase_fullscreen {
+  z-index: var(--z-index-overlay);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000b;
+  padding: max(5vw, 40px);
+  transition: opacity 0.5s;
+	opacity: 0;
+  pointer-events: none;
+}
+.showcase_fullscreen.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.showcase_fullscreen_close_button {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  cursor: pointer;
+}
+.showcase_fullscreen_media {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+.showcase_fullscreen_media img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.showcase_fullscreen_button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #000a;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+.showcase_fullscreen_button:hover {
+  background-color: #444a;
 }

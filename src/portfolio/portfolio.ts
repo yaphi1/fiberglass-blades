@@ -44,6 +44,8 @@
   const pageContent = document.querySelector('.page_content');
   const gallery = document.querySelector('.gallery');
   const showcase = document.querySelector('.showcase');
+  const showcaseFullscreen = document.querySelector('.showcase_fullscreen');
+  const showcaseFullscreenButton = document.querySelector('.showcase_fullscreen_button');
 
   function generateProjects() {
     for (let i = projects.length; i < 16; i++) {
@@ -58,11 +60,11 @@
   }
 
   function prepareShowcaseMedia (project: Project) {
-    const showcaseMediaContainer = showcase?.querySelector('.showcase_media');
-    if (!showcaseMediaContainer) {
+    const showcaseMediaContent = showcase?.querySelector('.showcase_media_content');
+    if (!showcaseMediaContent) {
       return;
     }
-    showcaseMediaContainer.innerHTML = project.mediaItems.map(mediaItem => {
+    showcaseMediaContent.innerHTML = project.mediaItems.map(mediaItem => {
       return `<img src="${mediaItem.url}">`;
     }).join('');
   }
@@ -75,6 +77,21 @@
     showcaseImages?.[index].classList.add('active');
   }
 
+  function showShowcaseFullscreen(project: Project, selectedMediaIndex: number) {
+    const showcaseFullscreenMedia = showcaseFullscreen?.querySelector('.showcase_fullscreen_media');
+    if (!showcaseFullscreenMedia) { return; }
+    showcaseFullscreenMedia.innerHTML = `
+      <img src="${project.mediaItems[selectedMediaIndex].url}">
+    `;
+    showcaseFullscreen?.classList.add('active');
+  }
+
+  function hideShowcaseFullscreen() {
+    showcaseFullscreen?.classList.remove('active');
+  }
+
+  function prepareFullscreenButton() {}
+
   function prepareSlider(project: Project) {
     let currentSlide = 0;
     prepareShowcaseMedia(project);
@@ -85,7 +102,6 @@
       currentSlide = index;
       document.querySelector('.showcase_thumbnail_container.active')?.classList.remove('active');
       thumbnailContainers[index].classList.add('active');
-      // setShowcaseMedia(project.mediaItems[index].url);
       setActiveShowcaseMedia(index);
     }
     
@@ -95,6 +111,9 @@
       thumbnailContainer.addEventListener('click', () => {
         goToIndex(index);
       });
+    });
+    showcaseFullscreenButton?.addEventListener('click', () => {
+      showShowcaseFullscreen(project, currentSlide);
     });
   }
 
@@ -165,11 +184,10 @@
   }
 
   function attachClicksToCloseShowcase() {
-    const showcase = document.querySelector('.showcase');
-    const showcaseCloseButton = document.querySelector('.showcase_close_button');
-    const showcaseContent = document.querySelector('.showcase_content');
-    
-    const closeTargets = [showcase, showcaseCloseButton, showcaseContent];
+    const showcaseCloseButton = showcase?.querySelector('.showcase_close_button');
+    const showcaseContent = showcase?.querySelector('.showcase_content');
+
+    const closeTargets = [showcase, showcaseContent];
 
     showcaseCloseButton?.addEventListener('click', hideShowcase);
     showcase?.addEventListener('click', (event) => {
@@ -179,12 +197,23 @@
       }
     });
   }
+  
+  function attachClicksToCloseFullscreen() {
+    const showcaseFullscreenCloseButton = showcaseFullscreen?.querySelector('.showcase_fullscreen_close_button');
+    showcaseFullscreenCloseButton?.addEventListener('click', hideShowcaseFullscreen);
+    showcaseFullscreen?.addEventListener('click', (event) => {
+      if(event.target === showcaseFullscreen) {
+        hideShowcaseFullscreen();
+      }
+    });
+  }
 
   function startPortfolio() {
     generateProjects();
     displayProjects(projects, gallery);
     attachClicksToProjects(projects);
     attachClicksToCloseShowcase();
+    attachClicksToCloseFullscreen();
   }
   startPortfolio();
 

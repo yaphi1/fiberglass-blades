@@ -57,7 +57,35 @@
         </div>
         <div class="showcase_media_door_container">
           <div class="showcase_media_container">
-            <div class="showcase_media"></div>
+            <div class="showcase_media">
+              <div class="showcase_media_content"></div>
+              <button class="showcase_fullscreen_button">
+                <svg class="fullscreen_arrows" width="20" height="20" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                  <style type="text/css">/*<![CDATA[*/ .fullscreen_arrows line{ stroke: var(--text-color-primary); stroke-width:1; stroke-linecap:round; } /*]]>*/</style>
+                  <title>Fullscreen</title>
+
+                  <!-- top left -->
+                  <line x1="0.5" y1="0.5" x2="3.5" y2="3.5"></line>
+                  <line x1="0.5" y1="0.5" x2="0.5" y2="3"></line>
+                  <line x1="0.5" y1="0.5" x2="3" y2="0.5"></line>
+                  
+                  <!-- top right -->
+                  <line x1="9.5" y1="0.5" x2="6.5" y2="3.5"></line>
+                  <line x1="9.5" y1="0.5" x2="9.5" y2="3"></line>
+                  <line x1="9.5" y1="0.5" x2="7" y2="0.5"></line>
+
+                  <!-- bottom left -->
+                  <line x1="0.5" y1="9.5" x2="3.5" y2="6.5"></line>
+                  <line x1="0.5" y1="9.5" x2="0.5" y2="7"></line>
+                  <line x1="0.5" y1="9.5" x2="3" y2="9.5"></line>
+                  
+                  <!-- bottom right -->
+                  <line x1="9.5" y1="9.5" x2="6.5" y2="6.5"></line>
+                  <line x1="9.5" y1="9.5" x2="9.5" y2="7"></line>
+                  <line x1="9.5" y1="9.5" x2="7" y2="9.5"></line>
+                </svg>
+              </button>
+            </div>
             <div class="showcase_thumbnails"></div>
           </div>
         </div>
@@ -68,6 +96,18 @@
         </div>
       </div>
     </div>
+
+    <div class="showcase_fullscreen" data-close-fullscreen>
+      <div class="showcase_fullscreen_close_button">
+        <svg class="basic_x" width="20" height="20" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+          <style type="text/css">/*<![CDATA[*/ .basic_x line{ stroke: var(--text-color-primary); stroke-width:1; stroke-linecap:round; } /*]]>*/</style>
+          <line x1="0.5" y1="0.5" x2="9.5" y2="9.5"></line>
+          <line x1="0.5" y1="9.5" x2="9.5" y2="0.5"></line>
+        </svg>
+      </div>
+      <div class="showcase_fullscreen_media"></div>
+    </div>
+
     <script src="./portfolio.js"></script>
   </body>
 </html>
