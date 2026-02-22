@@ -1,0 +1,14 @@
+{
+  "name": "fiberglass-blades",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc && cpx \"src/**/*.{html,css,svg,png,json,md}\" output --parents",
+    "clean": "rm -rf output",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "cpx": "^1.5.0"
+  }
+}
