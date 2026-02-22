@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc && cpx \"src/**/*.{html,css,svg,png,json,md}\" output --parents",
+    "build": "tsc --outDir output && cpx \"src/**/*.{html,css,svg,png,json,md}\" output",
     "clean": "rm -rf output",
-    "dev": "tsc -w"
+    "dev": "tsc --outDir output & cpx \"src/**/*.{html,css,svg,png,json,md}\" output --watch"
   },
   "devDependencies": {
     "typescript": "^5.3.0",
