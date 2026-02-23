@@ -8,6 +8,7 @@ body {
 	--text-color-secondary: #8f8484; */
 	
 	--background-color: #006797;
+	--background-color-gradient-end: #0098db;
 	--line-color: #bfdbdf;
 	--text-color-primary: #fff;
 	--text-color-secondary: #bfdbdf;
@@ -17,12 +18,33 @@ body {
 
 	margin: 0px;
 	background-color: var(--background-color);
+  background-attachment: fixed;
 	font-family: "Merriweather", serif;
   font-weight: 400;
 	color: var(--text-color-primary);
 
   --z-index-header: 10;
   --z-index-overlay: 20;
+}
+body::before {
+  content: '';
+  display: block;
+  width: 100vw;
+  height: 120vh;
+  position: fixed;
+  pointer-events: none;
+  background-image: linear-gradient(
+    var(--background-color) 65%,
+    var(--background-color-gradient-end)
+  );
+	animation: float-up-down 6s ease-in-out infinite;
+	z-index: -1;
+}
+
+@keyframes float-up-down {
+	0% { transform: translateY(0); }
+	50% { transform: translateY(-20vh); }
+	100% { transform: translateY(0); }
 }
 header {
 	display: flex;
