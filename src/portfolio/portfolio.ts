@@ -136,6 +136,7 @@
 
     titleContainer.textContent = project.title;
     prepareSlider(project);
+    showcase?.scrollTo(0, 0);
     showcase?.classList.add('active');
     pageContent?.classList.add('faded');
     document.body.classList.add('no_scroll');
