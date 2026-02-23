@@ -4,7 +4,7 @@
     url: string;
   };
 
-  const mediaItems: Array<MediaItem> = [
+  const sampleMediaItems: Array<MediaItem> = [
     {
       type: 'image',
       url: 'https://fiberglassblades.com/images/Zelda-Skyward-Sword_Breath-of-the-Wild_set.jpg',
@@ -29,15 +29,38 @@
 
   type Project = {
     title: string;
+    franchiseName: string;
+    yearMade: number;
+    materials: Array<string>;
     description: string;
     mediaItems: Array<MediaItem>;
   };
 
   const projects: Array<Project> = [
     {
-      title: 'Project 1',
-      description: `Here's a description`,
-      mediaItems: [...mediaItems],
+      title: `Skyward Sword / Breath of the Wild: Hylian Shield`,
+      franchiseName: `Legend of Zelda: Skyward Sword / Breath of the Wild`,
+      yearMade: 2011,
+      materials: ['resin', 'foam core', 'aluminum reinforcement', 'suede handle wrapping'],
+      description: `Here is the newest version of the Hylian shield from the Legend of Zelda: Skyward Sword and Breath of the Wild. Both games seemed to have used the same designs with almost no differences aside from very slight touches possibly due to game limitations being higher in BotW.`,
+      mediaItems: [
+        {
+          type: 'image',
+          url: 'https://fiberglassblades.com/images/Zelda_Skyward-Sword_Breath-of-the-Wild_Hylian-Shield-2.jpg',
+        },
+        {
+          type: 'image',
+          url: 'https://fiberglassblades.com/images/Zelda_Skyward-Sword_Breath-of-the-Wild_Hylian-Shield-1.jpg',
+        },
+        {
+          type: 'image',
+          url: 'https://fiberglassblades.com/images/Zelda_Skyward-Sword_Breath-of-the-Wild_Hylian-Shield-3.jpg',
+        },
+        {
+          type: 'image',
+          url: 'https://fiberglassblades.com/images/Zelda_Skyward-Sword_Breath-of-the-Wild_Hylian-Shield-4.jpg',
+        },
+      ],
     },
   ];
 
@@ -48,12 +71,13 @@
   const showcaseFullscreenButton = document.querySelector('.showcase_fullscreen_button');
 
   function generateProjects() {
-    for (let i = projects.length; i < 16; i++) {
+    const initialLength = projects.length;
+    for (let i = 0; i < 11; i++) {
       const nextProject = structuredClone(projects[0]);
-      nextProject.title = `Project ${i + 1}`;
+      nextProject.title = `Project ${i + initialLength + 1}`;
       nextProject.mediaItems = [
-        mediaItems[i % mediaItems.length],
-        ...mediaItems,
+        sampleMediaItems[i % sampleMediaItems.length],
+        ...sampleMediaItems,
       ];
       projects.push(nextProject);
     }
@@ -89,8 +113,6 @@
   function hideShowcaseFullscreen() {
     showcaseFullscreen?.classList.remove('active');
   }
-
-  function prepareFullscreenButton() {}
 
   function prepareSlider(project: Project) {
     let currentSlide = 0;
@@ -130,11 +152,27 @@
     }).join('');
   }
 
-  function showShowcase(project: Project) {
-    const titleContainer = showcase?.querySelector('.showcase_title');
-    if (!titleContainer) { return; }
+  function populateShowcaseContent (project: Project) {
+    const projectName = showcase?.querySelector('.showcase_project_name');
+    const franchiseName = showcase?.querySelector('.showcase_franchise_name');
+    const yearMade = showcase?.querySelector('.showcase_year_made');
+    const materials = showcase?.querySelector('.showcase_materials');
+    const description = showcase?.querySelector('.showcase_description');
+    if (!projectName || !franchiseName || !yearMade || !materials || !description) {
+      return;
+    }
 
-    titleContainer.textContent = project.title;
+    projectName.textContent = project.title;
+    franchiseName.textContent = project.franchiseName;
+    yearMade.textContent = project.yearMade.toString();
+    materials.innerHTML = project.materials.map(material => {
+      return `<li>${material}</li>`;
+    }).join('');
+    description.textContent = project.description;
+  }
+
+  function showShowcase(project: Project) {
+    populateShowcaseContent(project);
     prepareSlider(project);
     showcase?.scrollTo(0, 0);
     showcase?.classList.add('active');
@@ -164,7 +202,9 @@
         return;
       }
       captionContainer.textContent = project.title;
-      mediaContainer.innerHTML = `<img src="${mediaItems[i % mediaItems.length].url}">`;
+      mediaContainer.innerHTML = `
+        <img src="${project.mediaItems[0].url}">
+      `;
       fragment.append(templateClone);
     });
     
